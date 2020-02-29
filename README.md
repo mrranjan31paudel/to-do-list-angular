@@ -1,0 +1,1 @@
+This is a single page application developed with AngularJs 1.7.8.
