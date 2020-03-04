@@ -1,6 +1,6 @@
-<div ng-controller="homeController">   
+<div ng-controller="homeController">
     <ul class="todo-list">
-        <li class="todo-item" ng-repeat="todoItem in todos" >
+        <li class="todo-item" ng-repeat="todoItem in allTodos">
             <div class="item-container" ng-click="changeStatus(todoItem)">
                 <div class="item-wrapper">
                     <input class="task-checkbox" type="checkbox" ng-model="todoItem.completed">
@@ -9,7 +9,7 @@
             </div>
             <div class="buttons-wrapper">
                 <button class="task-view-button"><a class="task-view-link" href="#!/{{todoItem.id}}">view</a></button>
-                <input class="btn-delete-task" type="button" value="Delete" ng-click="deleteTask(todoItem.id)" >
+                <input class="btn-delete-task" type="button" value="Delete" ng-click="deleteAnyTask(todoItem.id)">
             </div>
         </li>
     </ul>
