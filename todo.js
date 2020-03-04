@@ -23,7 +23,7 @@ var app = angular.module('todo-app', ['ngRoute'])
       });
   })
 
-  .run(function($rootScope){
+  .run(function ($rootScope) {
     $rootScope.todos = [];
 
     $rootScope.countRemaining = function () {
@@ -34,12 +34,12 @@ var app = angular.module('todo-app', ['ngRoute'])
       return count;
     }
   })
-  
-  .controller('homeController', function($scope, $rootScope) {
+
+  .controller('homeController', function ($scope, $rootScope) {
     $rootScope.addTodo = function () {
       if ($rootScope.todoTitle) {
         $rootScope.todos = [...$rootScope.todos, {
-          id: ($rootScope.todos.length===0? 0: $rootScope.todos[$rootScope.todos.length-1].id+1),
+          id: ($rootScope.todos.length === 0 ? 0 : $rootScope.todos[$rootScope.todos.length - 1].id + 1),
           title: $rootScope.todoTitle,
           completed: false
         }];
@@ -56,18 +56,18 @@ var app = angular.module('todo-app', ['ngRoute'])
     }
 
     $scope.deleteTask = function (clickedItemId) {
-      $rootScope.todos = $rootScope.todos.filter(item => item.id!==clickedItemId);
+      $rootScope.todos = $rootScope.todos.filter(item => item.id !== clickedItemId);
     }
 
   })
 
-  .controller('completedController', function($scope, $rootScope){
+  .controller('completedController', function ($scope, $rootScope) {
     $scope.todos = $rootScope.todos.filter(item => item.completed === true);
 
     $rootScope.addTodo = function () {
       if ($rootScope.todoTitle) {
         $rootScope.todos = [...$rootScope.todos, {
-          id: ($rootScope.todos.length===0? 0: $rootScope.todos[$rootScope.todos.length-1].id+1),
+          id: ($rootScope.todos.length === 0 ? 0 : $rootScope.todos[$rootScope.todos.length - 1].id + 1),
           title: $rootScope.todoTitle,
           completed: false
         }];
@@ -82,12 +82,12 @@ var app = angular.module('todo-app', ['ngRoute'])
 
     $scope.changeStatus = function (todoItem) {
       todoItem.completed = !todoItem.completed;
-      $scope.todos = $rootScope.todos.filter(item => item.completed===true);
+      $scope.todos = $rootScope.todos.filter(item => item.completed === true);
     }
-    
+
     $scope.deleteTask = function (clickedItemId) {
-      $rootScope.todos = $rootScope.todos.filter(item => item.id!==clickedItemId);
-      $scope.todos = $rootScope.todos.filter(item => item.completed===true);
+      $rootScope.todos = $rootScope.todos.filter(item => item.id !== clickedItemId);
+      $scope.todos = $rootScope.todos.filter(item => item.completed === true);
     }
 
     // $scope.funcCompleted = function (){
@@ -95,38 +95,38 @@ var app = angular.module('todo-app', ['ngRoute'])
     // }
 
   })
-  
-  .controller('remainingController', function($scope, $rootScope){
-    $scope.todos = $rootScope.todos.filter(item => item.completed===false);
+
+  .controller('remainingController', function ($scope, $rootScope) {
+    $scope.todos = $rootScope.todos.filter(item => item.completed === false);
 
     $rootScope.addTodo = function () {
       if ($rootScope.todoTitle) {
         $rootScope.todos = [...$rootScope.todos, {
-          id: ($rootScope.todos.length===0? 0: $rootScope.todos[$rootScope.todos.length-1].id+1),
+          id: ($rootScope.todos.length === 0 ? 0 : $rootScope.todos[$rootScope.todos.length - 1].id + 1),
           title: $rootScope.todoTitle,
           completed: false
         }];
-        $scope.todos = $rootScope.todos;
+        $scope.todos = $rootScope.todos.filter(item => item.completed === false);
         $rootScope.todoTitle = '';
       }
     }
 
     $rootScope.clearCompleted = function () {
       $rootScope.todos = $rootScope.todos.filter(item => item.completed === false);
-      $scope.todos = $rootScope.todos.filter(item => item.completed===false);
+      $scope.todos = $rootScope.todos.filter(item => item.completed === false);
     }
 
     $scope.changeStatus = function (todoItem) {
       todoItem.completed = !todoItem.completed;
-      $scope.todos = $rootScope.todos.filter(item => item.completed===false);
+      $scope.todos = $rootScope.todos.filter(item => item.completed === false);
     }
 
     $scope.deleteTask = function (clickedItemId) {
-      $rootScope.todos = $rootScope.todos.filter(item => item.id!==clickedItemId);
-      $scope.todos = $rootScope.todos.filter(item => item.completed===false);
+      $rootScope.todos = $rootScope.todos.filter(item => item.id !== clickedItemId);
+      $scope.todos = $rootScope.todos.filter(item => item.completed === false);
     }
   })
 
-  .controller('detailsController', function($scope, $routeParams, $rootScope){
+  .controller('detailsController', function ($scope, $routeParams, $rootScope) {
     [$scope.data] = $rootScope.todos.filter(item => item.id == $routeParams.id);
   });
