@@ -29,17 +29,23 @@
             <input class="btn-clear-completed-task" type="button" value="Clear Completed" ng-click="clearCompleted()">
         </form>
 
-        <nav class="nav-bar">
-            <a href="#!/">Home</a>|
-            <a href="#!/completed">Completed</a>|
-            <a href="#!/remaining">Remaining</a>
-        </nav>
+        <div class="todo-body-container">
+            <nav class="nav-bar">
+                <a class="{{currentRoute==='home'?'active' : ''}}" href="#!/" ng-click="changeRoute('home')">Home</a>|
+                <a class="{{currentRoute==='completed'?'active' : ''}}" href="#!/completed"
+                    ng-click="changeRoute('completed')">Completed</a>|
+                <a class="{{currentRoute==='remaining'?'active' : ''}}" href="#!/remaining"
+                    ng-click="changeRoute('remaining')">Remaining</a>
+            </nav>
 
-        <p class="completion-status">
-            <span>{{countRemaining()}}</span> of <span>{{todos.length}}</span> remaining.
-        </p>
+            <div class="todo-list-container">
+                <div class="completion-status {{checkCompletionOfAll() ? 'all-tasks-completed' : ''}}">
+                    <span>{{countRemaining()}}</span> of <span>{{todos.length}}</span> remaining.
+                </div>
 
-        <div ng-view></div>
+                <div ng-view></div>
+            </div>
+        </div>
     </div>
 
 </body>

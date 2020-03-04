@@ -2,13 +2,28 @@ angular.module('todo-app')
 
   .controller('MainController', function ($scope) {
     $scope.todos = [];
+    $scope.currentRoute = 'home';
+
+    $scope.changeRoute = function (newRoute) {
+      $scope.currentRoute = newRoute;
+    }
 
     $scope.countRemaining = function () {
       var count = 0;
       angular.forEach($scope.todos, function (todoItem) {
         count += todoItem.completed ? 0 : 1;
       });
+
       return count;
+    }
+
+    $scope.checkCompletionOfAll = function () {
+      if ($scope.countRemaining() === 0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     $scope.addTodo = function () {

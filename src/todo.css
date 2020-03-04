@@ -17,18 +17,29 @@ body{
 }
 
 .nav-bar{
-    width: calc(100% - 20px);
-    margin: 5px auto;
-    padding: 5px;
-    border: 1px solid rgb(206, 206, 206);
+    width: 100%;    
+    margin: 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .nav-bar a{
+    width: calc(100% / 3);
+    display: block;
     text-decoration: none;
+    color: rgb(0, 0, 128);
+    background: rgb(241, 241, 241);
     font-weight: 600;
+}
+
+.nav-bar a:hover {
+    color: rgb(0, 0, 255);
+}
+
+.nav-bar .active {
+    color: rgb(0, 0, 255);
+    background: white;
 }
 
 .app-container form{
@@ -50,6 +61,16 @@ body{
 
 .btn-submit-task:hover{
     cursor: pointer;
+}
+
+.todo-body-container{
+    margin: 10px auto;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+.todo-list-container {
+    margin: 0 auto;
+    background: white;
 }
 
 .todo-list{
@@ -81,9 +102,13 @@ body{
 }
 
 .completion-status {
-    margin: 2px;
-    padding: 2px;
+    padding: 10px;
     font-size: 14px;
+    color: red;
+}
+
+.all-tasks-completed {
+    color: green;
 }
 
 .todo-item {
