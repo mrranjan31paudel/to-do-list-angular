@@ -2,27 +2,58 @@ angular.module('todo-app')
 
   .controller('MainController', function ($scope) {
     $scope.todos = [];
-    $scope.currentRoute = 'home';
+    const currentUrlHash = window.location.hash.replace('#!/', '');
+
+    $scope.currentRoute = currentUrlHash === '' ? 'home' : currentUrlHash;
+    $scope.areAllCompleted = true;
+    $scope.areAllRemaining = false;
 
     $scope.changeRoute = function (newRoute) {
       $scope.currentRoute = newRoute;
     }
 
-    $scope.countRemaining = function () {
+    $scope.countCompleted = function () {
       var count = 0;
+
       angular.forEach($scope.todos, function (todoItem) {
-        count += todoItem.completed ? 0 : 1;
+        count += todoItem.completed ? 1 : 0;
       });
+      if (count === $scope.todos.length) {
+        $scope.areAllCompleted = true;
+      }
+      else {
+        $scope.areAllCompleted = false;
+      }
+      if (count === 0) {
+        $scope.areAllRemaining = true;
+      }
+      else {
+        $scope.areAllRemaining = false;
+      }
 
       return count;
     }
 
-    $scope.checkCompletionOfAll = function () {
-      if ($scope.countRemaining() === 0) {
-        return true;
+    $scope.markAllAs = function (event) {
+      event.preventDefault();
+
+      if (event.target.id === 'mark-all-completed' && !$scope.areAllCompleted) {
+        $scope.todos.forEach(task => {
+          if (!task.completed) {
+            task.completed = true;
+          }
+        });
+
+        $scope.broadCastChange();
       }
-      else {
-        return false;
+      else if (event.target.id === 'mark-all-remaining' && !$scope.areAllRemaining) {
+        $scope.todos.forEach(task => {
+          if (task.completed) {
+            task.completed = false;
+          }
+        });
+
+        $scope.broadCastChange();
       }
     }
 

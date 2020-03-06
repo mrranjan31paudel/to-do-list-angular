@@ -26,7 +26,8 @@
         <form ng-submit="addTodo()">
             <input class="field-input-task" type="text" placeholder="Enter new task here..." ng-model="todoTitle">
             <input class="btn-submit-task" type="submit" value="Add">
-            <input class="btn-clear-completed-task" type="button" value="Clear Completed" ng-click="clearCompleted()">
+            <input class="btn-clear-completed-task" type="button" value="Clear Completed" ng-click="clearCompleted()"
+                ng-disabled="areAllRemaining">
         </form>
 
         <div class="todo-body-container">
@@ -39,10 +40,21 @@
             </nav>
 
             <div class="todo-list-container">
-                <div class="completion-status {{checkCompletionOfAll() ? 'all-tasks-completed' : ''}}">
-                    <span>{{countRemaining()}}</span> of <span>{{todos.length}}</span> remaining.
+                <div class="completion-status {{areAllCompleted ? 'all-tasks-completed' : ''}}">
+                    <span>{{countCompleted()}}</span> of <span>{{todos.length}}</span> completed.
                 </div>
-
+                <div class="bulk-task-change-container" ng-show="todos.length>0">
+                    <a id="mark-all-completed"
+                        class="{{!areAllCompleted ? 'mark-all-completed-link': 'mark-all-completed-link blocked'}}"
+                        href="#" ng-click="markAllAs($event)">
+                        Mark all as completed
+                    </a>|
+                    <a id="mark-all-remaining"
+                        class="{{!areAllRemaining ? 'mark-all-remaining-link': 'mark-all-remaining-link blocked'}}"
+                        href="#" ng-click="markAllAs($event)">
+                        Mark all as remaining
+                    </a>
+                </div>
                 <div ng-view></div>
             </div>
         </div>

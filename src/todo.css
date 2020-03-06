@@ -101,6 +101,10 @@ body{
     cursor: pointer;
 }
 
+.btn-clear-completed-task:disabled {
+    background: grey;
+}
+
 .completion-status {
     padding: 10px;
     font-size: 14px;
@@ -109,6 +113,31 @@ body{
 
 .all-tasks-completed {
     color: green;
+}
+
+.bulk-task-change-container {
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+}
+
+.mark-all-completed-link, .mark-all-remaining-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: blue;
+}
+
+.mark-all-completed-link:hover, .mark-all-remaining-link:hover {
+    text-decoration: underline;
+}
+
+.blocked {
+    color: grey;
+}
+
+.blocked:hover {
+    text-decoration: none;
+    cursor: default;
 }
 
 .todo-item {
