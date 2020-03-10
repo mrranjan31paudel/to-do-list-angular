@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./src/todo.css">
-    <link rel="icon" type="image/ico" href="./public/favicon.ico">
+    <!-- <link rel="icon" type="image/ico" href="./public/favicon.ico"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
     <script src="./src/appConfig.js"></script>
@@ -33,11 +33,11 @@
 
         <div class="todo-body-container">
             <nav class="nav-bar">
-                <a class="{{currentRoute==='home'?'active' : ''}}" href="#!/" ng-click="changeRoute('home')">Home</a>|
-                <a class="{{currentRoute==='completed'?'active' : ''}}" href="#!/completed"
-                    ng-click="changeRoute('completed')">Completed</a>|
-                <a class="{{currentRoute==='remaining'?'active' : ''}}" href="#!/remaining"
-                    ng-click="changeRoute('remaining')">Remaining</a>
+                <a class="{{currentRoute==='/home'?'active' : ''}}" href="#!/" ng-click="changeRoute('/home')">Home</a>|
+                <a class="{{currentRoute==='/completed'?'active' : ''}}" href="#!/completed"
+                    ng-click="changeRoute('/completed')">Completed</a>|
+                <a class="{{currentRoute==='/remaining'?'active' : ''}}" href="#!/remaining"
+                    ng-click="changeRoute('/remaining')">Remaining</a>
             </nav>
 
             <div class="todo-list-container">
