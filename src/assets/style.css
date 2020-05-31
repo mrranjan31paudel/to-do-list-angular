@@ -103,6 +103,7 @@ body{
 
 .btn-clear-completed-task:disabled {
     background: grey;
+    cursor: not-allowed;
 }
 
 .completion-status {
@@ -148,6 +149,11 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.todo-item:hover {
+    cursor: pointer;
+    background-color: #ececec;
 }
 
 .item-container{

@@ -1,4 +1,4 @@
-angular.module('todo-app')
+angular.module('todoApp')
 
   .controller('remainingController', function ($scope) {
     $scope.remainingTodos = $scope.$parent.todos.filter(item => item.completed === false);

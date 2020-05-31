@@ -1,4 +1,4 @@
-angular.module('todo-app', ['ngRoute'])
+angular.module('todoApp', ['ngRoute', 'ngResource'])
 
   .config(function ($routeProvider) {
     $routeProvider

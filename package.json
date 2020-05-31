@@ -1,0 +1,15 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Web app for TODO",
+  "scripts": {
+    "start": "nodemon --watch .env --watch src"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

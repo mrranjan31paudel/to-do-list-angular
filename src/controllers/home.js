@@ -1,6 +1,12 @@
-angular.module('todo-app')
+angular.module('todoApp')
+  .factory('todoService', ['$resource', function ($resource) {
+    return $resource('http://localhost:9191/api/todos');
+  }])
+  .controller('homeController', ['$scope', 'todoService', function ($scope, todoService) {
+    var response = todoService.query(function () {
+      console.log(response);
+    });
 
-  .controller('homeController', function ($scope) {
     $scope.allTodos = $scope.todos;
 
     $scope.changeStatus = function (todoItem) {
@@ -20,5 +26,4 @@ angular.module('todo-app')
     $scope.updateLocalTodo = function () {
       $scope.allTodos = $scope.todos;
     }
-
-  });
+  }]);

@@ -1,0 +1,200 @@
+/*Margin on all sides*/
+.m-0 {
+  margin: 0px;
+}
+.m-2 {
+  margin: 2px;
+}
+.m-5 {
+  margin: 5px;
+}
+.m-10 {
+  margin: 10px;
+}
+
+/*Vertical margin, horizontal auto*/
+.m-0-auto {
+  margin: 0px auto;
+}
+.m-2-auto {
+  margin: 2px auto;
+}
+.m-5-auto {
+  margin: 5px auto;
+}
+.m-10-auto {
+  margin: 10px auto;
+}
+
+/*Margin on right sides*/
+.mr-0 {
+  margin-right: 0px;
+}
+.mr-2 {
+  margin-right: 2px;
+}
+.mr-5 {
+  margin-right: 5px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+
+/*Margin on left sides*/
+.ml-0 {
+  margin-left: 0px;
+}
+.ml-2 {
+  margin-left: 2px;
+}
+.ml-5 {
+  margin-left: 5px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+
+/*Margin on top sides*/
+.mt-0 {
+  margin-top: 0px;
+}
+.mt-2 {
+  margin-top: 2px;
+}
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+
+/*Margin on bottom sides*/
+.mb-0 {
+  margin-bottom: 0px;
+}
+.mb-2 {
+  margin-bottom: 2px;
+}
+.mb-5 {
+  margin-bottom: 5px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+/*Padding on all sides*/
+.p-5 {
+  padding: 5px;
+}
+.p-10 {
+  padding: 10px;
+}
+
+/*padding on right sides*/
+.pr-0 {
+  padding-right: 0px;
+}
+.pr-2 {
+  padding-right: 2px;
+}
+.pr-5 {
+  padding-right: 5px;
+}
+.pr-10 {
+  padding-right: 10px;
+}
+
+/*padding on left sides*/
+.pl-0 {
+  padding-left: 0px;
+}
+.pl-2 {
+  padding-left: 2px;
+}
+.pl-5 {
+  padding-left: 5px;
+}
+.pl-10 {
+  padding-left: 10px;
+}
+
+/*padding on top sides*/
+.pt-0 {
+  padding-top: 0px;
+}
+.pt-2 {
+  padding-top: 2px;
+}
+.pt-5 {
+  padding-top: 5px;
+}
+.pt-10 {
+  padding-top: 10px;
+}
+
+/*padding on bottom sides*/
+.pb-0 {
+  padding-bottom: 0px;
+}
+.pb-2 {
+  padding-bottom: 2px;
+}
+.pb-5 {
+  padding-bottom: 5px;
+}
+.pb-10 {
+  padding-bottom: 10px;
+}
+
+/*Text Colors*/
+.color-1 {
+  color: rgb(65, 65, 65);
+}
+
+/*Border-radius*/
+.brdr-rd-3 {
+  border-radius: 3px;
+}
+.brdr-rd-8 {
+  border-radius: 8px;
+}
+
+/*Flex-direction*/
+.flx-dir-row {
+  flex-direction: row;
+}
+.flx-al-c {
+  align-items: center;
+}
+.jst-cnt-s-b {
+  justify-content: space-between;
+}
+
+/*Text-align*/
+.txt-aln-lt {
+  text-align: left;
+}
+.txt-aln-c {
+  text-align: center;
+}
+.txt-aln-rt {
+  text-align: right;
+}
+
+/*Custom text-area*/
+.custom-text-area {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  resize: none;
+}
+
+/*containers*/
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
