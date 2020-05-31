@@ -1,6 +1,6 @@
-angular.module('todo-app')
+angular.module('todoApp')
 
-  .controller('MainController', function ($scope) {
+  .controller('MainController', ['$scope', function ($scope) {
     $scope.todos = [];
     const currentUrlHash = window.location.hash.replace('#!/', '');
 
@@ -83,4 +83,4 @@ angular.module('todo-app')
     $scope.broadCastChange = function () {
       $scope.$broadcast('stateChanged');
     }
-  });
+  }]);

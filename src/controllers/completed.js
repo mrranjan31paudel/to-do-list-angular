@@ -1,4 +1,4 @@
-angular.module('todo-app')
+angular.module('todoApp')
 
   .controller('completedController', function ($scope) {
     $scope.completedTodos = $scope.todos.filter(item => item.completed === true);
