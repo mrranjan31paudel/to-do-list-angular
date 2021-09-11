@@ -1,8 +1,11 @@
 <div ng-controller="detailsController">
     <h4>Task</h4>
     <div class="task-details-container">
-        <p>Task Id: <span>{{data.id}}</span></p>
-        <p>Task Title: <span>{{data.title}}</span></p>
-        <p>Task Status: <span>{{data.completed?'Completed':'Not Completed'}}</span></p>
+        <p>Id: <span>{{data.id}}</span></p>
+        <p>Title: <span>{{data.title}}</span></p>
+        <p>Description: <span>{{data.description}}</span></p>
+        <p>Status: <span ng-style="data.status.color">{{data.status.value}}</span></p>
+        <p>Created At: <span>{{data.createdAt}}</span></p>
+        <p>Updated At: <span>{{data.updatedAt}}</span></p>
     </div>
 </div>

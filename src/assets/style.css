@@ -22,6 +22,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-top: 1px solid rgb(206, 206, 206);
 }
 
 .nav-bar a{
@@ -142,10 +143,11 @@ body{
 }
 
 .todo-item {
-    margin: 2px;
+    margin: 5px;
     padding: 5px;
     border: 1px solid rgb(177, 177, 177);
-    border-radius: 3px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -205,4 +207,89 @@ body{
 
 .task-details-container p span{
     color: rgb(11, 62, 230);
+}
+
+.not-started {
+    background-color: #ff000060;
+    border: 0.25em ridge red;
+}
+
+.in-progress {
+    background-color: #ffa50060;
+    border: 0.25em ridge #ffa500;
+}
+
+.completed {
+    background-color: #00ff0060;
+    border: 0.25em ridge #00ff00;
+}
+
+.total {
+    background-color: #80808060;
+    border: 0.25em ridge #808080;
+}
+
+/*Custom select*/
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select-value {
+  width: 70px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 3px;
+  text-align: left;
+  overflow-x: hidden;
+}
+
+.custom-select-value:hover {
+    cursor: pointer;
+}
+
+.clip-overflow-text {
+    display: inline-block;
+    width: calc(100% - 20px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-option {
+    padding: 10px;
+    text-align: left;
+    border-left: 5px outset transparent;
+}
+.custom-option:hover {
+    cursor: pointer;
+    background-color: rgb(100, 149, 237, 0.5);
+    border-left: 5px outset rgb(100, 149, 237);
+}
+
+.selected-option {
+    background-color: rgb(100, 149, 237, 0.5);
+    border-left: 5px outset rgb(100, 149, 237);
+}
+
+.custom-select-menu {
+    position: absolute;
+    z-index: 1000;
+    width: 120px;
+    background-color: #ffffff;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 3px;
+    list-style-type: none;
+    padding: unset;
+    margin: unset;
+    box-shadow: 0px 8px 20px 1px #00000040;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
 }

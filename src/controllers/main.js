@@ -1,8 +1,36 @@
 angular.module('todoApp')
 
-  .controller('MainController', ['$scope', function ($scope) {
+  .controller('MainController', ['$scope', '$route', function ($scope, $route) {
+    $scope.ellipseClass = {
+      NOT_STARTED: 'not-started',
+      IN_PROGRESS: 'in-progress',
+      COMPLETED: 'completed',
+      TOTAL: 'total'
+    }
+    $scope.ellipseLabel = {
+      NOT_STARTED: 'Not Started',
+      IN_PROGRESS: 'In Progress',
+      COMPLETED: 'Completed',
+      TOTAL: 'Total'
+    }
+    $scope.statusCounts = [
+      { status: 'NOT_STARTED', count: 1 },
+      { status: 'IN_PROGRESS', count: 2 },
+      { status: 'COMPLETED', count: 3 },
+      { status: 'TOTAL', count: 6 }
+    ]
+
+    $scope.selectOptions = [
+      { value: '', label: 'All' },
+      { value: 'NOT_STARTED', label: 'Not Started' },
+      { value: 'IN_PROGRESS', label: 'In Progress' },
+      { value: 'COMPLETED', label: 'Completed' }
+    ];
+    $scope.selectedStatus = 0;
+    $scope.isSelectMenuOpen = false;
+
     $scope.todos = [];
-    const currentUrlHash = window.location.hash.replace('#!/', '');
+    var currentUrlHash = window.location.hash.replace('#!/', '');
 
     $scope.currentRoute = currentUrlHash === '' ? 'home' : currentUrlHash;
     $scope.areAllCompleted = true;
@@ -10,51 +38,6 @@ angular.module('todoApp')
 
     $scope.changeRoute = function (newRoute) {
       $scope.currentRoute = newRoute;
-    }
-
-    $scope.countCompleted = function () {
-      var count = 0;
-
-      angular.forEach($scope.todos, function (todoItem) {
-        count += todoItem.completed ? 1 : 0;
-      });
-      if (count === $scope.todos.length) {
-        $scope.areAllCompleted = true;
-      }
-      else {
-        $scope.areAllCompleted = false;
-      }
-      if (count === 0) {
-        $scope.areAllRemaining = true;
-      }
-      else {
-        $scope.areAllRemaining = false;
-      }
-
-      return count;
-    }
-
-    $scope.markAllAs = function (event) {
-      event.preventDefault();
-
-      if (event.target.id === 'mark-all-completed' && !$scope.areAllCompleted) {
-        $scope.todos.forEach(task => {
-          if (!task.completed) {
-            task.completed = true;
-          }
-        });
-
-        $scope.broadCastChange();
-      }
-      else if (event.target.id === 'mark-all-remaining' && !$scope.areAllRemaining) {
-        $scope.todos.forEach(task => {
-          if (task.completed) {
-            task.completed = false;
-          }
-        });
-
-        $scope.broadCastChange();
-      }
     }
 
     $scope.addTodo = function () {
@@ -81,6 +64,18 @@ angular.module('todoApp')
     }
 
     $scope.broadCastChange = function () {
-      $scope.$broadcast('stateChanged');
+      $scope.$broadcast('statusChanged');
+    }
+
+    $scope.toggelDropdown = function () {
+      $scope.isSelectMenuOpen = !$scope.isSelectMenuOpen;
+    }
+
+    $scope.handleStatusOptionClick = function (index) {
+      $scope.selectedStatus = index;
+      var queryParams = $scope.selectOptions[index].value ? { status: $scope.selectOptions[index].value } : '';
+      $route.updateParams(queryParams);
+
+      $scope.broadCastChange();
     }
   }]);

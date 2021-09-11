@@ -2,28 +2,67 @@ angular.module('todoApp')
   .factory('todoService', ['$resource', function ($resource) {
     return $resource('http://localhost:9191/api/todos');
   }])
-  .controller('homeController', ['$scope', 'todoService', function ($scope, todoService) {
-    var response = todoService.query(function () {
-      console.log(response);
-    });
+  .constant('statusValue', {
+    NOT_STARTED: 'Not started',
+    IN_PROGRESS: 'In progress',
+    COMPLETED: 'Completed'
+  })
+  .constant('statusColor', {
+    NOT_STARTED: 'red',
+    IN_PROGRESS: 'orange',
+    COMPLETED: 'green'
+  })
+  .constant('statusNumber', {
+    NOT_STARTED: 0,
+    IN_PROGRESS: 1,
+    COMPLETED: 2
+  })
+  .controller('homeController',
+    ['$scope', '$route', 'todoService', 'statusValue', 'statusColor', 'statusNumber',
+      function ($scope, $route, todoService, statusValue, statusColor, statusNumber) {
 
-    $scope.allTodos = $scope.todos;
+        $scope.fetchTodos = function (queryParam = {}) {
+          var response = todoService.get(queryParam);
 
-    $scope.changeStatus = function (todoItem) {
-      todoItem.completed = !todoItem.completed;
-    }
+          response.$promise
+            .then(function (response) {
+              $scope.allTodos = response.data;
+              $scope.allTodos.forEach(todo => {
+                todo.statusStyle = {
+                  backgroundColor: statusColor[todo.status],
+                  borderRadius: '5px'
+                };
+                todo.statusValue = statusValue[todo.status];
+                todo.statusNumber = statusNumber[todo.status];
+              });
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+        }
 
-    $scope.deleteAnyTask = function (clickedItemId) {
-      $scope.deleteTask(clickedItemId);
+        var currentRouteParam = $route.current.params;
 
-      $scope.updateLocalTodo();
-    }
+        $scope.fetchTodos(currentRouteParam);
 
-    $scope.$on('stateChanged', function (e) {
-      $scope.updateLocalTodo();
-    });
+        $scope.changeStatus = function (todoItem) {
+          todoItem.completed = !todoItem.completed;
+        }
 
-    $scope.updateLocalTodo = function () {
-      $scope.allTodos = $scope.todos;
-    }
-  }]);
+        $scope.deleteAnyTask = function (clickedItemId) {
+          $scope.deleteTask(clickedItemId);
+
+          $scope.updateLocalTodo();
+        }
+
+        $scope.$on('statusChanged', function (e) {
+          var selectedIndex = e.targetScope.selectedStatus;
+          var selectedStatus = e.targetScope.selectOptions[selectedIndex].value;
+          var queryParam = selectedStatus ? { status: selectedStatus } : {};
+
+          $scope.fetchTodos(queryParam);
+        });
+
+        $scope.updateLocalTodo = function () {
+        }
+      }]);

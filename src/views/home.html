@@ -1,11 +1,18 @@
 <div ng-controller="homeController">
     <ul class="todo-list">
-        <li class="todo-item" ng-repeat="todoItem in allTodos">
+        <li class="todo-item flx-al-c" ng-repeat="todoItem in allTodos">
             <div class="item-container" ng-click="changeStatus(todoItem)">
                 <div class="item-wrapper">
-                    <input class="task-checkbox" type="checkbox" ng-model="todoItem.completed">
                     <div class="added-task {{todoItem.completed}}">{{todoItem.title}}</div>
                 </div>
+            </div>
+            <div class="status-wrapper" ng-style="todoItem.statusStyle" title="{{todoItem.statusValue}}">
+                <input type="radio" name="{{'statusStep'+todoItem.id}}" ng-disabled="{{todoItem.statusNumber>0}}"
+                    ng-checked="todoItem.status==='NOT_STARTED'">
+                <input type="radio" name="{{'statusStep'+todoItem.id}}" ng-disabled="{{todoItem.statusNumber>1}}"
+                    ng-checked="todoItem.status==='IN_PROGRESS'">
+                <input type="radio" name="{{'statusStep'+todoItem.id}}" ng-disabled="{{todoItem.statusNumber>1}}"
+                    ng-checked="todoItem.status==='COMPLETED'">
             </div>
             <div class="buttons-wrapper">
                 <button class="task-view-button"><a class="task-view-link" href="#!/{{todoItem.id}}">view</a></button>

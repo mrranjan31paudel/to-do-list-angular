@@ -1,18 +1,10 @@
 angular.module('todoApp', ['ngRoute', 'ngResource'])
 
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when("/", {
         templateUrl: "./src/views/home.html",
         controller: "homeController"
-      })
-      .when("/completed", {
-        templateUrl: "./src/views/completed.html",
-        controller: "completedController"
-      })
-      .when("/remaining", {
-        templateUrl: "./src/views/remaining.html",
-        controller: "remainingController"
       })
       .when("/:id", {
         templateUrl: "./src/views/details.html",
@@ -21,4 +13,8 @@ angular.module('todoApp', ['ngRoute', 'ngResource'])
       .otherwise({
         templateUrl: "./src/views/home.html"
       });
+
+    $locationProvider
+      .html5Mode(true)
+      .hashPrefix('*');
   });
